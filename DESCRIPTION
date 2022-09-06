@@ -1,0 +1,29 @@
+Package: classR
+Type: Package
+Title: Classify Documents
+Version: 0.1.0
+Authors@R: 
+    person(given = "Nicolas",
+           family = "Mangin",
+           role = c("aut", "cre"),
+           email = "nicolas.jb.mangin@gmail.com",
+           comment = c(ORCID = "0000-0002-1597-9376"))
+Maintainer: Nicolas Mangin <nicolas.jb.mangin@gmail.com>
+Description: Functions and user interfaces to help with document classifications.
+License: GPL-3 | file LICENSE
+Depends: R (>= 4.1)
+Encoding: UTF-8
+RoxygenNote: 7.2.1
+Imports:
+  dplyr,
+  jsTreeR,
+  purrr,
+  shiny,
+  shinyalert,
+  shinybusy,
+  stringr,
+  tibble,
+  tidyr,
+  fontawesome,
+  rhandsontable,
+  shinydashboardPlus
