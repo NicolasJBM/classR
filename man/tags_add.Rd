@@ -4,14 +4,12 @@
 \alias{tags_add}
 \title{Add a tag}
 \usage{
-tags_add(tags, documents, tag_label)
+tags_add(course_paths, tag_label)
 }
 \arguments{
-\item{tags}{Tibble. List of tags, their values and attributes.}
+\item{course_paths}{Reactive. Function containing a list of paths to the different folders and databases on local disk.}
 
-\item{documents}{Tibble. List of documents}
-
-\item{tag_label}{Character. Label of the tag which should be added.}
+\item{tag_label}{Character. Label of the tag which should be removed.}
 }
 \value{
 Add an empty tag in all documents.

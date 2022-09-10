@@ -16,7 +16,7 @@ tags_search_icons_ui <- function(id){
     solidHeader = TRUE,
     width = 12,
     collapsible = TRUE,
-    collapsed = TRUE,
+    collapsed = FALSE,
     closable = FALSE,
     icon = shiny::icon("icons"),
     background = "navy",

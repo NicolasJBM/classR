@@ -4,12 +4,10 @@
 \alias{tags_replace_value}
 \title{Replace tag value}
 \usage{
-tags_replace_value(tags, documents, tag_label, old_value, new_value)
+tags_replace_value(course_paths, tag_label, old_value, new_value)
 }
 \arguments{
-\item{tags}{Tibble. List of tags, their values and attributes.}
-
-\item{documents}{Tibble. List of documents}
+\item{course_paths}{Reactive. Function containing a list of paths to the different folders and databases on local disk.}
 
 \item{tag_label}{Character. Label of the tag in which the value should be replaced.}
 

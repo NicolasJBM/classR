@@ -4,14 +4,14 @@
 \alias{tags_edit_server}
 \title{Edit tags}
 \usage{
-tags_edit_server(id, tags, documents)
+tags_edit_server(id, course_data, course_paths)
 }
 \arguments{
 \item{id}{Character. ID of the module to connect the user interface to the appropriate server side.}
 
-\item{tags}{Tibble. List of tags, their values and attributes.}
+\item{course_data}{Reactive. Function containing all the course data loaded with the course.}
 
-\item{documents}{Tibble. List of documents}
+\item{course_paths}{Reactive. Function containing a list of paths to the different folders and databases on local disk.}
 }
 \value{
 Modified tags.

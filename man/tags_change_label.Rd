@@ -4,12 +4,10 @@
 \alias{tags_change_label}
 \title{Change the label of a tag}
 \usage{
-tags_change_label(tags, documents, old_label, new_label)
+tags_change_label(course_paths, old_label, new_label)
 }
 \arguments{
-\item{tags}{Tibble. List of tags, their values and attributes.}
-
-\item{documents}{Tibble. List of documents}
+\item{course_paths}{Reactive. Function containing a list of paths to the different folders and databases on local disk.}
 
 \item{old_label}{Character. Initial label to be replaced.}
 
