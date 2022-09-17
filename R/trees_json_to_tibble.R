@@ -64,13 +64,15 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
     table_file <- table_file |>
       dplyr::mutate_all(
         function(x) base::replace(x, (x == "children" | x == "data"),  NA)
-      ) |>
+      ) |> 
       tidyr::pivot_longer(
         cols = dplyr::starts_with("LEV"),
         names_to = "level",
         values_to = "info"
       ) |>
-      dplyr::filter(!base::is.na(info)) |>
+      dplyr::filter(
+        info %in% c("text","title","file","code","language","modified","type","document")
+      ) |>
       dplyr::mutate(
         level = base::as.numeric(stringr::str_remove_all(level, "LEV")),
         docnbr = 0

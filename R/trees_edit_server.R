@@ -142,13 +142,13 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         spin = "orbit",
         text = "Please wait while the tree is saved..."
       )
-      tree <- input$edittree_full
+      jstree <- input$edittree
       treename <- tree()$course$tree[1]
       base::save(
-        tree,
+        jstree,
         file = base::paste0(course_paths()$subfolders$jstrees, "/", treename)
       )
-      tree <- classR::trees_json_to_tibble(tree, maxlevel = 10, course_data())
+      tree <- classR::trees_json_to_tibble(jstree, maxlevel = 10, course_data())
       base::save(
         tree,
         file = base::paste0(course_paths()$subfolders$trees, "/", treename)
