@@ -142,7 +142,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         spin = "orbit",
         text = "Please wait while the tree is saved..."
       )
-      jstree <- input$edittree
+      jstree <- input$edittree_full
       treename <- tree()$course$tree[1]
       base::save(
         jstree,
