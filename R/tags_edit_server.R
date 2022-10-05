@@ -119,7 +119,7 @@ tags_edit_server <- function(id, course_data, course_paths){
     ############################################################################
     
     output$edittags <- shiny::renderUI({
-      shiny::req(base::length(course_data()$tags) > 0)
+      shiny::req(base::length(course_data()$tags) > 1)
       taglabels <- base::unique(base::as.character(course_data()$tags$tag))
       shinydashboardPlus::box(
         width = 12, title = "Batch-edit tags in documents", solidHeader = TRUE,
@@ -293,7 +293,7 @@ tags_edit_server <- function(id, course_data, course_paths){
     
     output$replacetagvalue <- shiny::renderUI({
       shiny::req(!base::is.null(input$slcttaglabel))
-      shiny::req(base::length(course_data()$tags) > 0)
+      shiny::req(base::length(course_data()$tags) > 1)
       values <- course_data()$tags |>
         dplyr::filter(tag == input$slcttaglabel)
       shiny::fluidRow(
