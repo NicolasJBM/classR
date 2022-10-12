@@ -94,7 +94,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         program = base::as.character(input$program),
         program_level = base::as.character(input$programlevel),
         group = base::as.character(input$group),
-        year =  base::as.integer(input$year),
+        year =  base::as.character(input$year),
         website = base::as.character(input$website),
         bib = base::as.character(input$bib),
         csl = base::as.character(input$csl)
