@@ -28,6 +28,7 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
   position <- NULL
   type <- NULL
   LEVEL_0 <- NULL
+  LEV1 <- NULL
   folder <- NULL
   language <- NULL
   title <- NULL
@@ -63,7 +64,10 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
       ) |>
       dplyr::mutate_all(base::as.numeric) |>
       dplyr::mutate_all(function(x) x-1) |>
-      dplyr::mutate_all(function(x) base::replace(x, x<=0, 0))
+      dplyr::mutate_all(function(x) base::replace(x, x<=0, 0)) |>
+      dplyr::mutate(LEV1 = LEV1+1)
+      
+    for (i in 1:base::length(positions)) positions[i,i] <- 0
     
     if (base::nrow(positions) > 1){
       coordinates <- base::list()
