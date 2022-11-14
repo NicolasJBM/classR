@@ -68,6 +68,10 @@ tags_edit_server <- function(id, course_data, course_paths){
               tag,
               levels = base::unique(course_data()$tags$tag)
             ),
+            filter = base::factor(
+              filter,
+              levels = c("logical","selection","multiple","pattern","range","value")
+            ),
             icon = base::factor(
               icon,
               levels = fontawesome::fa_metadata()$icon_names
@@ -81,9 +85,9 @@ tags_edit_server <- function(id, course_data, course_paths){
           rhandsontable::rhandsontable(
             height = 500, width = "100%", rowHeaders = NULL, stretchH = "all"
           ) |>
-          rhandsontable::hot_col(4, readOnly = TRUE) |>
+          rhandsontable::hot_col(5, readOnly = TRUE) |>
           rhandsontable::hot_cols(
-            colWidths = c("20%","10%","20%","10%","20%","20%")
+            colWidths = c("20%","10%","20%","10%","10%","20%","10%")
           ) |>
           rhandsontable::hot_context_menu(
             allowRowEdit = TRUE, allowColEdit = FALSE
@@ -96,7 +100,12 @@ tags_edit_server <- function(id, course_data, course_paths){
       unchanged <- course_data()$tags |>
         dplyr::filter(tag != input$selecttag)
       edited <- rhandsontable::hot_to_r(input$display_custom_tags) |>
-        dplyr::mutate(tag = base::as.character(tag))
+        dplyr::mutate(
+          tag = base::as.character(tag),
+          filter = base::as.character(filter),
+          icon = base::as.character(icon),
+          boxcolor = base::as.character(boxcolor)
+        )
       tags <- dplyr::bind_rows(edited, unchanged) |>
         dplyr::arrange(tag, order)
       base::save(tags, file = course_paths()$databases$tags)
