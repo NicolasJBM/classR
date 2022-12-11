@@ -59,14 +59,14 @@ tags_edit_server <- function(id, course_data, course_paths){
     })
     
     output$display_custom_tags <- rhandsontable::renderRHandsontable({
-      shiny::req(base::length(course_data()$tags) > 1)
       if (input$selecttag != ""){
-        course_data()$tags |>
+        base::load(course_paths()$databases$tags)
+        tags |>
           dplyr::filter(tag == input$selecttag) |>
           dplyr::mutate(
             tag = base::factor(
               tag,
-              levels = base::unique(course_data()$tags$tag)
+              levels = base::unique(tags$tag)
             ),
             filter = base::factor(
               filter,
