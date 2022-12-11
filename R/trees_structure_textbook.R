@@ -73,12 +73,24 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
       coordinates <- base::list()
       coordinates[[1]] <- base::rep(0, levnbr)
       for (i in 2:base::nrow(positions)){
-        tmp1 <- coordinates[[i-1]]
-        tmp2 <- base::as.numeric((positions[i,]-positions[i-1,]))
-        tmp2 <- base::replace(tmp2, tmp2>1, 1)
-        tmp3 <- tmp1 + tmp2
-        coordinates[[i]] <- base::replace(tmp3, tmp3<0, 0)
+        tmp1 <- base::as.numeric(positions[i-1,])
+        tmp2 <- base::as.numeric(positions[i,])
+        tmp3 <- tmp2 - tmp1
+        tmp3add <- tmp3
+        tmp3add[tmp3<1] <- 0
+        tmp3add[tmp3>1] <- 1
+        incr <- 0
+        for (j in 2:base::length(tmp3add)){
+          incr <- base::max(incr, tmp3add[j-1])
+          if (incr > 0) tmp3add[j] <- 0
+        }
+        tmp3rem <- tmp3
+        tmp3rem[tmp3>=0] <- 0
+        tmp4 <- coordinates[[i-1]] + tmp3rem + tmp3add
+        tmp4 <- base::replace(tmp4, tmp4<0, 0)
+        coordinates[[i]] <- tmp4
       }
+      
       coordinates <- base::unlist(base::lapply(
         coordinates, function(x) base::paste(x, collapse = ".")
       ))
