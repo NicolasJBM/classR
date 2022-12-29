@@ -13,7 +13,7 @@ Description: Functions and user interfaces to help with document classifications
 License: GPL-3 | file LICENSE
 Depends: R (>= 4.1)
 Encoding: UTF-8
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Imports:
   dplyr,
   jsTreeR,

@@ -34,10 +34,8 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
   title <- NULL
   document <- NULL
   section <- NULL
-  prefix <- NULL
   complement <- NULL
   link <- NULL
-  languageweb <- NULL
   code <- NULL
 
 
@@ -123,9 +121,7 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
         tmptest <- stats::na.omit(base::as.character(positions[row,col]))
         tmpid <- stats::na.omit(base::as.character(positions[row,1:col]))
         if (base::length(tmptest) > 0 & base::length(tmpid) > 0){
-          folders[row,col] <- base::paste(c(
-            "children", tmpid
-          ), collapse = "-")
+          folders[row,col] <- base::paste(c("section", tmpid), collapse = "")
         } else folders[row,col] <- NA
       }
     }
@@ -135,33 +131,22 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
     
     folders <- tidyr::unite(
       folders, "folder", base::names(folders), sep = "/", na.rm = TRUE
-    ) |>
-      dplyr::mutate(folder = base::paste(tree_name, folder, sep = "/"))
+    )
     
     textbook_structure <- files |>
       dplyr::bind_cols(section_nbr) |>
-      tidyr::unite("section", section, title, sep = ". ", remove = FALSE) |>
       dplyr::select(file, code, language, section, title, document) |>
       dplyr::bind_cols(folders) |>
       dplyr::mutate(
-        languageweb = base::tolower(language),
-        section = stringr::str_replace(section, "^\\. ", "")
+        language = base::tolower(language),
+        section = stringr::str_replace(section, "^\\. ", ""),
+        folder = base::paste(base::paste0(tree_name, "_", language), folder, sep = "/")
       ) |>
       dplyr::mutate(
-        languageweb = dplyr::case_when(
-          languageweb %in% c("us","gb") ~ "en",
-          TRUE ~ languageweb
-        ),
-        prefix = stringr::str_remove_all(
-          stringr::str_extract_all(section, "^[0-9]+\\.", simplify = TRUE),
-          "\\."
-        )
+        complement = base::max(base::nchar(section))
       ) |>
       dplyr::mutate(
-        complement = base::max(base::nchar(prefix))
-      ) |>
-      dplyr::mutate(
-        complement = complement - base::nchar(prefix)
+        complement = complement - base::nchar(section)
       ) |>
       dplyr::mutate(
         complement = purrr::map_chr(
@@ -169,7 +154,7 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
         )
       ) |>
       dplyr::mutate(
-        weight = base::paste0(prefix, complement)
+        order = base::paste0(section, complement)
       ) |>
       dplyr::select(-complement)
     
@@ -178,12 +163,7 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
     } else {
       textbook_structure <- textbook_structure |>
         dplyr::mutate(
-          link = stringr::str_remove_all(
-            folder, tree_name
-          )
-        ) |>
-        dplyr::mutate(
-          link = base::paste0(website, "/", languageweb, link)
+          link = base::paste0(website, "/", folder)
         )
     }
     
@@ -199,9 +179,7 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
       title = base::character(0),
       document = base::character(0),
       folder = base::character(0),
-      languageweb = base::character(0),
-      prefix = base::character(0),
-      weight = base::character(0),
+      order = base::character(0),
       link = base::character(0)
     )
   }
