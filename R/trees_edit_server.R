@@ -48,6 +48,10 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
           ns("course"), "Course:", value = tree()$course$course[1], width = "100%"
         ),
         shiny::textInput(
+          ns("authors"), "Authors:",
+          value = tree()$course$authors[1], width = "100%"
+        ),
+        shiny::textInput(
           ns("institution"), "Institution:",
           value = tree()$course$institution[1], width = "100%"
         ),
@@ -70,14 +74,6 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         shiny::textInput(
           ns("website"), "Website:",
           value = tree()$course$website[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("bib"), "Bibtex file:",
-          value = tree()$course$bib[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("csl"), "CSL file:",
-          value = tree()$course$csl[1], width = "100%"
         )
       )
     })
@@ -90,14 +86,13 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
       edtided <- tibble::tibble(
         tree = base::as.character(tree()$course$tree[1]),
         course = base::as.character(input$course),
+        authors = base::as.character(input$authors),
         institution = base::as.character(input$institution),
         program = base::as.character(input$program),
         program_level = base::as.character(input$programlevel),
         group = base::as.character(input$group),
         year =  base::as.character(input$year),
-        website = base::as.character(input$website),
-        bib = base::as.character(input$bib),
-        csl = base::as.character(input$csl)
+        website = base::as.character(input$website)
       )
       courses <- dplyr::bind_rows(edtided, other_courses)
       base::save(courses, file = course_paths()$databases$courses)
