@@ -111,7 +111,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
       jsTreeR::jstree(
         nodes = tree()$jstree,
         selectLeavesOnly = FALSE,
-        checkboxes = FALSE,
+        checkboxes = TRUE,
         search = FALSE,
         searchtime = 250,
         dragAndDrop = TRUE,
@@ -129,8 +129,33 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         base::suppressMessages()
     })
 
-
-
+    selected_document <- shiny::reactive({
+      shiny::req(!base::is.null(input$edittree_selected))
+      selection <- input$edittree_selected
+      selection <- classR::trees_selected_json_to_tibble(selection)
+      shiny::req("file" %in% base::names(selection))
+      selection$file[1]
+    })
+    
+    output$selecteddoc <- shiny::renderUI({
+      shiny::req(!base::is.null(selected_document()))
+      filepath <- base::paste0(
+        course_paths()$subfolders$original, "/", selected_document()
+      )
+      shiny::req(base::file.exists(filepath))
+      base::load(course_paths()$databases$propositions)
+      test_parameters <- NA
+      as_latex <- FALSE
+      record_solution <- FALSE
+      base::suppressWarnings(
+        shiny::withMathJax(shiny::HTML(knitr::knit2html(
+          text = base::readLines(filepath),
+          fragment.only = TRUE, quiet = TRUE
+        )))
+      )
+    })
+    
+    
     # Save tree
     shiny::observeEvent(input$savetree, {
       shinybusy::show_modal_spinner(
