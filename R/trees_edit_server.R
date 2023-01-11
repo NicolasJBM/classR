@@ -33,6 +33,9 @@
 #' @importFrom shinyalert shinyalert
 #' @importFrom shinybusy remove_modal_spinner
 #' @importFrom shinybusy show_modal_spinner
+#' @importFrom shiny withMathJax
+#' @importFrom shiny HTML
+#' @importFrom knitr knit2html
 #' @importFrom tibble tibble
 #' @export
 
