@@ -16,6 +16,7 @@
 #' @importFrom dplyr vars
 #' @importFrom dplyr starts_with
 #' @importFrom stringr str_replace_all
+#' @importFrom stringr str_split
 #' @importFrom stats na.omit
 #' @importFrom tidyr unite
 #' @importFrom dplyr bind_cols
@@ -51,7 +52,7 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
       !base::is.na(file)
     )
   
-  if (base::nrow(files) > 0){
+  if (base::nrow(files) > base::length(stringr::str_split(files$position[1], "\\.", simplify = TRUE))){
     
     files$position <- stringr::str_remove_all(files$position, "^1.")
     
@@ -64,10 +65,10 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
       dplyr::mutate_all(function(x) x-1) |>
       dplyr::mutate_all(function(x) base::replace(x, x<=0, 0)) |>
       dplyr::mutate(LEV1 = LEV1+1)
-      
+    
     for (i in 1:base::length(positions)) positions[i,i] <- 0
     
-    if (base::nrow(positions) > 1){
+    if (base::nrow(positions) > base::length(positions)){
       coordinates <- base::list()
       coordinates[[1]] <- base::rep(0, levnbr)
       for (i in 2:base::nrow(positions)){

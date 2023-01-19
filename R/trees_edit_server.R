@@ -142,6 +142,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
     
     output$selecteddoc <- shiny::renderUI({
       shiny::req(!base::is.null(selected_document()))
+      shiny::req(base::length(selected_document()) == 1)
       filepath <- base::paste0(
         course_paths()$subfolders$original, "/", selected_document()
       )
