@@ -29,7 +29,6 @@
 #' @importFrom shiny showModal
 #' @importFrom shiny tagList
 #' @importFrom shiny textInput
-#' @importFrom shiny wellPanel
 #' @importFrom shinyalert shinyalert
 #' @importFrom shinybusy remove_modal_spinner
 #' @importFrom shinybusy show_modal_spinner
@@ -45,7 +44,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
 
     output$editcourse <- shiny::renderUI({
       shiny::req(!base::is.na(tree()$course))
-      shiny::wellPanel(
+      base::list(
         shiny::h4(tree()$course$tree[1]),
         shiny::textInput(
           ns("course"), "Course:", value = tree()$course$course[1], width = "100%"
