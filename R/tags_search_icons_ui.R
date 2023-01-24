@@ -19,7 +19,6 @@ tags_search_icons_ui <- function(id){
     collapsed = FALSE,
     closable = FALSE,
     icon = shiny::icon("icons"),
-    background = "navy",
     gradient = FALSE,
     shiny::fluidRow(
       shiny::column(

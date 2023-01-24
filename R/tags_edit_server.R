@@ -132,7 +132,7 @@ tags_edit_server <- function(id, course_data, course_paths){
       taglabels <- base::unique(base::as.character(course_data()$tags$tag))
       shinydashboardPlus::box(
         width = 12, title = "Batch-edit tags in documents", solidHeader = TRUE,
-        status = "danger", background = "navy",
+        status = "danger",
         collapsible = TRUE, collapsed = FALSE,
         icon = shiny::icon("pen-to-square"),
         shiny::fluidRow(
@@ -147,7 +147,7 @@ tags_edit_server <- function(id, course_data, course_paths){
             4,
             shiny::actionButton(
               ns("deletetaglabel"), "Delete", icon = shiny::icon("trash-can"),
-              style = "background-color:#990000;color:#FFF;width:100%;margin-top:25px;"
+              style = "background-color:#660000;color:#FFF;width:100%;margin-top:25px;"
             )
           )
         ),
@@ -218,7 +218,7 @@ tags_edit_server <- function(id, course_data, course_paths){
           4,
           shiny::actionButton(
             ns("changetaglabel"), "Change", icon = shiny::icon("pen-to-square"),
-            style = "background-color:#000099;color:#FFF;width:100%;margin-top:25px;"
+            style = "background-color:#006699;color:#FFF;width:100%;margin-top:25px;"
           )
         )
       )
@@ -326,7 +326,7 @@ tags_edit_server <- function(id, course_data, course_paths){
           4,
           shiny::actionButton(
             ns("replacetagvalue"), "Replace", icon = shiny::icon("right-left"),
-            style = "background-color:#000099;color:#FFF;width:100%;margin-top:25px;"
+            style = "background-color:#003366;color:#FFF;width:100%;margin-top:25px;"
           )
         )
       )
@@ -406,8 +406,8 @@ tags_edit_server <- function(id, course_data, course_paths){
         shiny::column(
           4,
           shiny::actionButton(
-            ns("addtaglabel"), "Add", icon = shiny::icon("plus"),
-            style = "background-color:#009900;color:#FFF;width:100%;margin-top:25px;"
+            ns("addtaglabel"), "New", icon = shiny::icon("wand-magic-sparkles"),
+            style = "background-color:#000066;color:#FFF;width:100%;margin-top:25px;"
           )
         )
       )

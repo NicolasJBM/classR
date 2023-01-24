@@ -17,31 +17,58 @@ trees_edit_ui <- function(id){
   ns <- shiny::NS(id)
   base::list(
     shiny::fluidRow(
-      shiny::column(
-        3,
+      shinydashboardPlus::box(
+        title = "Definition",
+        status = "navy",
+        solidHeader = TRUE,
+        width = 3,
+        collapsible = TRUE,
+        collapsed = FALSE,
+        closable = FALSE,
+        icon = shiny::icon("id-card"),
         shiny::actionButton(
           ns("savecourse"), "Save course", icon = shiny::icon("floppy-disk"),
-          style = "background-color:#006633;color:#FFF;
+          style = "background-color:#006600;color:#FFF;
           width:100%;margin-top:25px;"
         ),
         shiny::uiOutput(ns("editcourse"))
       ),
-      shiny::column(
-        6,
-        shiny::actionButton(
-          ns("savetree"), "Save tree", icon = shiny::icon("floppy-disk"),
-          style = "background-color:#006633;color:#FFF;
-          width:100%;margin-top:25px;"
+      shinydashboardPlus::box(
+        title = "Classification",
+        status = "primary",
+        solidHeader = TRUE,
+        width = 6,
+        collapsible = TRUE,
+        collapsed = FALSE,
+        closable = FALSE,
+        icon = shiny::icon("folder-tree"),
+        shiny::fluidRow(
+          shiny::column(
+            6,
+            shiny::actionButton(
+              ns("savetree"), "Save tree", icon = shiny::icon("floppy-disk"),
+              style = "background-color:#006600;color:#FFF;width:100%;margin-top:25px;"
+            )
+          ),
+          shiny::column(
+            6,
+            shiny::actionButton(
+              ns("deletetree"), "Delete tree", icon = shiny::icon("trash"),
+              style = "background-color:#660000;color:#FFF;width:100%;margin-top:25px;margin-bottom:25px;"
+            )
+          )
         ),
         jsTreeR::jstreeOutput(ns("edittree"))
       ),
-      shiny::column(
-        3,
-        shiny::actionButton(
-          ns("deletetree"), "Delete tree", icon = shiny::icon("trash"),
-          style = "background-color:#990000;color:#FFF;
-          width:100%;margin-top:25px;margin-bottom:25px;"
-        ),
+      shinydashboardPlus::box(
+        title = "Display",
+        status = "info",
+        solidHeader = TRUE,
+        width = 3,
+        collapsible = TRUE,
+        collapsed = FALSE,
+        closable = FALSE,
+        icon = shiny::icon("eye"),
         shiny::uiOutput(ns("selecteddoc"))
       )
     )

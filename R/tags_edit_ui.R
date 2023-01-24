@@ -35,7 +35,7 @@ tags_edit_ui <- function(id){
             4,
             shiny::actionButton(
               ns("savetags"), "Save", icon = shiny::icon("floppy-disk"),
-              style = "background-color:#006633;color:#FFF;width:100%;margin-top:25px;"
+              style = "background-color:#006600;color:#FFF;width:100%;margin-top:25px;"
             )
           )
         ),
@@ -43,8 +43,8 @@ tags_edit_ui <- function(id){
       ),
       shiny::column(
         5,
-        tags_search_icons_ui(ns("searchtags")),
-        shiny::uiOutput(ns("edittags"))
+        shiny::uiOutput(ns("edittags")),
+        tags_search_icons_ui(ns("searchtags"))
       )
     )
   )
