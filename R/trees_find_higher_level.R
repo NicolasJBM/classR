@@ -1,4 +1,4 @@
-#' @name tree_find_higher_level
+#' @name trees_find_higher_level
 #' @title Find the higher level folder
 #' @author Nicolas Mangin
 #' @description Function returning the required higher-level position of a document in a tree.
@@ -10,7 +10,7 @@
 
 
 
-tree_find_higher_level <- function(x, y){
+trees_find_higher_level <- function(x, y){
   z <- x |>
     stringr::str_split("\\.", simplify = TRUE) |>
     base::as.numeric()
