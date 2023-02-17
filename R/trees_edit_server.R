@@ -148,7 +148,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
       shiny::req(base::file.exists(filepath))
       base::load(course_paths()$databases$propositions)
       test_parameters <- NA
-      as_latex <- FALSE
+      docformat <- "html"
       record_solution <- FALSE
       base::suppressWarnings(
         shiny::withMathJax(shiny::HTML(knitr::knit2html(
