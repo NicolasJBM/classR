@@ -151,7 +151,9 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
       docformat <- "html"
       record_solution <- FALSE
       base::suppressWarnings(
-        shiny::withMathJax(shiny::HTML(knitr::knit2html(text = base::readLines(filepath))))
+        shiny::withMathJax(shiny::HTML(knitr::knit2html(
+          text = base::readLines(filepath), quiet = TRUE, template = FALSE
+        )))
       )
     })
     
