@@ -140,8 +140,7 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
       dplyr::bind_cols(folders) |>
       dplyr::mutate(
         language = base::tolower(language),
-        section = stringr::str_replace(section, "^\\. ", ""),
-        folder = base::paste(base::paste0(tree_name, "_", language), folder, sep = "/")
+        section = stringr::str_replace(section, "^\\. ", "")
       ) |>
       dplyr::mutate(
         complement = base::max(base::nchar(section))
@@ -164,12 +163,13 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
     } else {
       textbook_structure <- textbook_structure |>
         dplyr::mutate(
-          link = base::paste0(website, "/", folder)
+          link = base::paste0(website, "_", language, "/pages/", order, ".html")
         )
     }
     
     textbook_structure <- textbook_structure |>
-      dplyr::arrange(folder)
+      dplyr::select(-folder) |>
+      dplyr::arrange(order) 
     
   } else {
     textbook_structure <- tibble::tibble(
@@ -179,7 +179,6 @@ trees_structure_textbook <- function(tree, tree_name = "", website = ""){
       section = base::character(0),
       title = base::character(0),
       document = base::character(0),
-      folder = base::character(0),
       order = base::character(0),
       link = base::character(0)
     )
