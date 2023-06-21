@@ -183,9 +183,6 @@ tags_edit_server <- function(id, course_data, course_paths){
       paths <- shiny::isolate({ course_paths })
       tagtoremove <- shiny::isolate({ input$slcttaglabel })
       
-      shiny::req(tagtoremove %in% base::names(docs))
-      shiny::req(tagtoremove %in% tags$tag)
-      
       shinybusy::show_modal_spinner(
         spin = "orbit",
         text = base::paste0(
@@ -263,11 +260,21 @@ tags_edit_server <- function(id, course_data, course_paths){
     
     shiny::observeEvent(input$confirm_change_taglabel, {
       
+      print("Tag label change has been triggered")
+      
       docs <- shiny::isolate({ course_data()$documents })
       tags <- shiny::isolate({ course_data()$tags })
       paths <- shiny::isolate({ course_paths })
       slcttaglabel <- shiny::isolate({input$slcttaglabel})
       totaglabel <- shiny::isolate({input$totaglabel})
+      
+      
+      print(base::length(tags))
+      print(slcttaglabel)
+      print(totaglabel)
+      print(base::names(docs))
+      print(tags$tag)
+      
       
       shiny::req(base::length(tags) > 0)
       shiny::req(slcttaglabel != "tag_")

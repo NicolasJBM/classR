@@ -19,7 +19,9 @@ tags_remove <- function(course_paths, tag_label){
   base::save(tags, file = course_paths()$databases$tags)
   
   base::load(course_paths()$databases$documents)
-  documents <- dplyr::select(documents, -dplyr::all_of(tag_label))
+  
+  if (dplyr::all_of(tag_label) %in% base::names(documents))
+    documents <- dplyr::select(documents, -dplyr::all_of(tag_label))
   base::save(documents, file = course_paths()$databases$documents)
   
   for (file in documents$file){

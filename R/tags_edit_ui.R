@@ -44,7 +44,7 @@ tags_edit_ui <- function(id){
       shiny::column(
         5,
         shiny::uiOutput(ns("edittags")),
-        tags_search_icons_ui(ns("searchtags"))
+        classR::tags_search_icons_ui(ns("searchtags"))
       )
     )
   )
