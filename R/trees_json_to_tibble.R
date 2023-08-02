@@ -82,7 +82,7 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
     # Note that this assumes that the name of each entry is stored in a variable
     # called "text" (to follow jsTreeR convention)
     doc <- 0
-    for (row in 1:base::nrow(table_file)){
+    for (row in base::seq_len(base::nrow(table_file))){
       if (table_file[row,"info"] == "text") doc <- doc+1
       table_file[row,"docnbr"] <- doc
     }
@@ -110,7 +110,7 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
     # each document. The position of each document is obtained by collapsing
     # this vector.
     coordinates <- base::rep(0, base::max(table_file$level))
-    for (row in 1:base::nrow(table_file)){
+    for (row in base::seq_len(base::nrow(table_file))){
       tmplev <- base::unlist(table_file[row,"level"])
       coordinates[tmplev] <- coordinates[tmplev]+1
       # The next condition is necessary to avoid adding a phantom level
@@ -156,7 +156,7 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
     if (base::nrow(not_classified) > 0){
       not_classified <- not_classified |>
         dplyr::mutate(
-          position = 1:base::nrow(not_classified),
+          position = base::seq_len(base::nrow(not_classified)),
           text = title
         ) |>
         dplyr::mutate(position = purrr::map_chr(
@@ -177,7 +177,7 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
       )
     table_file <- table_file |>
       dplyr::mutate(
-        position = 1:base::nrow(table_file),
+        position = base::seq_len(base::nrow(table_file)),
         text = title
       ) |>
       dplyr::mutate(position = purrr::map_chr(
