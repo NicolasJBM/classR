@@ -14,6 +14,8 @@
 
 tags_remove <- function(course_paths, tag_label){
   
+  tag <- NULL
+  
   base::load(course_paths()$databases$tags)
   tags <- dplyr::filter(tags, tag != tag_label)
   base::save(tags, file = course_paths()$databases$tags)

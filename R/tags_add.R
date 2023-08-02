@@ -13,6 +13,8 @@
 
 tags_add <- function(course_paths, tag_label){
   
+  tag <- NULL
+  
   base::load(course_paths()$databases$tags)
   add <- tibble::tibble(
       tag = tag_label,

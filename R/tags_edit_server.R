@@ -47,6 +47,7 @@ tags_edit_server <- function(id, course_data, course_paths){
     boxcolor <- NULL
     value <- NULL
     count <- NULL
+    tag <- NULL
     
     shiny::observe({
       shiny::req(base::length(course_data()$tags) > 1)
