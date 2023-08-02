@@ -17,7 +17,7 @@ trees_json_to_tibble(json_file, maxlevel = 10, course_data)
 Tibble. List of documents with positions extracted from the classification tree and additional variables gathered from the document list.
 }
 \description{
-Function to transforms a document classification into a tibble and update all document-related information
+Function to transforms a document hierarchical classification into a tibble and update all document-related information
 }
 \author{
 Nicolas Mangin

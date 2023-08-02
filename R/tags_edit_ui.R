@@ -1,15 +1,15 @@
 #' @name tags_edit_ui
 #' @title Edit tags
 #' @author Nicolas Mangin
-#' @description Tabular form to change the attributes associated with tags or add new tags.
+#' @description Module displaying a tabular form where the user can change the attributes associated with tags or add new tags.
 #' @param id Character. ID of the module to connect the user interface to the appropriate server side.
 #' @return Modified tags.
 #' @importFrom rhandsontable rHandsontableOutput
+#' @importFrom shiny NS
 #' @importFrom shiny actionButton
 #' @importFrom shiny column
 #' @importFrom shiny fluidRow
 #' @importFrom shiny icon
-#' @importFrom shiny NS
 #' @importFrom shiny selectInput
 #' @importFrom shiny uiOutput
 #' @export

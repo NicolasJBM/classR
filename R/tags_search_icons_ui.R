@@ -1,11 +1,16 @@
 #' @name tags_search_icons_ui
 #' @title Search icons
 #' @author Nicolas Mangin
-#' @description Module allowing the user to search fontawesome icons to illustrate tags.
+#' @description Module allowing the user to search fontawesome icons to illustrate tags. The icon name can be added to the tags database through the tag edition module and appears with the document title.
 #' @param id ID if the module to connect the user interface to the appropriate server side.
-#' @import shiny
-#' @importFrom shinydashboardPlus box
 #' @importFrom fontawesome fa_metadata
+#' @importFrom shiny NS
+#' @importFrom shiny column
+#' @importFrom shiny fluidRow
+#' @importFrom shiny icon
+#' @importFrom shiny selectInput
+#' @importFrom shiny uiOutput
+#' @importFrom shinydashboardPlus box
 #' @export
 
 tags_search_icons_ui <- function(id){

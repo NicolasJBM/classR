@@ -2,7 +2,7 @@
 % Please edit documentation in R/tags_remove.R
 \name{tags_remove}
 \alias{tags_remove}
-\title{Remove a tag from all documents}
+\title{Remove a tag}
 \usage{
 tags_remove(course_paths, tag_label)
 }

@@ -19,7 +19,7 @@ tags_replace_value(course_paths, tag_label, old_value, new_value)
 Apply tag value change in all documents.
 }
 \description{
-Function replacing the value of a tag by another in all documents.
+Function replacing the value of a tag by another value in all documents. This is particularly useful when the user wants to change a label.
 }
 \author{
 Nicolas Mangin

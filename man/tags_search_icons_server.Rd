@@ -10,7 +10,7 @@ tags_search_icons_server(id)
 \item{id}{ID if the module to connect the user interface to the appropriate server side.}
 }
 \description{
-Module allowing the user to search fontawesome icons to illustrate tags.
+Module allowing the user to search fontawesome icons to illustrate tags. The icon name can be added to the tags database through the tag edition module and appears with the document title.
 }
 \author{
 Nicolas Mangin

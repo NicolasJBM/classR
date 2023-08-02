@@ -6,21 +6,23 @@
 #' @param tree_name Character. Name of the tree.
 #' @param website Character. Address of the website where the textbook is hosted.
 #' @return Tibble with all necessary information about the pages of the textbook.
-#' @importFrom stringr str_count
-#' @importFrom dplyr filter
-#' @importFrom stringr str_detect
 #' @importFrom dplyr arrange
-#' @importFrom dplyr mutate
-#' @importFrom tidyr separate
-#' @importFrom dplyr mutate_at
-#' @importFrom dplyr vars
-#' @importFrom dplyr starts_with
-#' @importFrom stringr str_replace_all
-#' @importFrom stringr str_split
-#' @importFrom stats na.omit
-#' @importFrom tidyr unite
 #' @importFrom dplyr bind_cols
+#' @importFrom dplyr filter
+#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate_all
 #' @importFrom dplyr select
+#' @importFrom dplyr starts_with
+#' @importFrom purrr map_chr
+#' @importFrom stringr str_count
+#' @importFrom stringr str_detect
+#' @importFrom stringr str_remove
+#' @importFrom stringr str_remove_all
+#' @importFrom stringr str_replace
+#' @importFrom stringr str_split
+#' @importFrom tibble tibble
+#' @importFrom tidyr separate
+#' @importFrom tidyr unite
 #' @export
 
 

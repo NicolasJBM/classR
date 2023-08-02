@@ -2,14 +2,13 @@
 #' @title Tree selection as tibble
 #' @author Nicolas Mangin
 #' @description Function transforming a selection of documents from jsTreeR to a table
-#' @param selected_tree List. input from a jsTreeR output.
+#' @param selected_tree List. Input from a jsTreeR output.
 #' @return Tibble. List of selected documents.
-#' @importFrom tibble tibble
+#' @importFrom dplyr all_of
 #' @importFrom dplyr mutate
 #' @importFrom purrr map
+#' @importFrom tibble tibble
 #' @importFrom tidyr unnest
-#' @importFrom tidyr unnest
-#' @importFrom dplyr all_of
 #' @export
 
 

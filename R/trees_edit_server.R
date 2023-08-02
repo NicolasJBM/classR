@@ -1,27 +1,30 @@
 #' @name trees_edit_server
 #' @title Edit course tree
 #' @author Nicolas Mangin
-#' @description Module allowing the user to change the hierarchical tree of documents and save these changes, either with the same name or a different one.
+#' @description Module allowing the user to change the hierarchical classification (tree) of documents and save these changes, either with the same name or a different one.
 #' @param id Character. ID of the module to connect the user interface to the appropriate server side.
 #' @param tree Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.
 #' @param course_data Reactive. Function containing all the course data loaded with the course.
 #' @param course_paths Reactive. Function containing a list of paths to the different folders and databases on local disk.
-#' @return Save the tree tree as a tibble in the folder "3_trees".
+#' @return Save the tree tree as a tibble in the folder containing trees.
 #' @importFrom dplyr anti_join
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr filter
 #' @importFrom jsTreeR jstree
 #' @importFrom jsTreeR jstreeDestroy
 #' @importFrom jsTreeR renderJstree
+#' @importFrom knitr knit2html
+#' @importFrom shiny HTML
+#' @importFrom shiny NS
 #' @importFrom shiny actionButton
 #' @importFrom shiny h4
 #' @importFrom shiny icon
 #' @importFrom shiny modalButton
 #' @importFrom shiny modalDialog
 #' @importFrom shiny moduleServer
-#' @importFrom shiny NS
 #' @importFrom shiny numericInput
 #' @importFrom shiny observeEvent
+#' @importFrom shiny reactive
 #' @importFrom shiny removeModal
 #' @importFrom shiny renderUI
 #' @importFrom shiny req
@@ -29,12 +32,10 @@
 #' @importFrom shiny showModal
 #' @importFrom shiny tagList
 #' @importFrom shiny textInput
+#' @importFrom shiny withMathJax
 #' @importFrom shinyalert shinyalert
 #' @importFrom shinybusy remove_modal_spinner
 #' @importFrom shinybusy show_modal_spinner
-#' @importFrom shiny withMathJax
-#' @importFrom shiny HTML
-#' @importFrom knitr knit2html
 #' @importFrom tibble tibble
 #' @export
 

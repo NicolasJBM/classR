@@ -1,12 +1,11 @@
 #' @name tags_edit_server
 #' @title Edit tags
 #' @author Nicolas Mangin
-#' @description Tabular form to change the attributes associated with tags or add new tags.
+#' @description Module displaying a tabular form where the user can change the attributes associated with tags or add new tags.
 #' @param id Character. ID of the module to connect the user interface to the appropriate server side.
 #' @param course_data Reactive. Function containing all the course data loaded with the course.
 #' @param course_paths Reactive. Function containing a list of paths to the different folders and databases on local disk.
 #' @return Modified tags.
-#' @import shiny
 #' @importFrom dplyr arrange
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr filter
@@ -18,16 +17,15 @@
 #' @importFrom rhandsontable hot_to_r
 #' @importFrom rhandsontable renderRHandsontable
 #' @importFrom rhandsontable rhandsontable
+#' @importFrom shiny NS
 #' @importFrom shiny actionButton
 #' @importFrom shiny column
 #' @importFrom shiny fluidRow
 #' @importFrom shiny icon
 #' @importFrom shiny isolate
 #' @importFrom shiny moduleServer
-#' @importFrom shiny NS
 #' @importFrom shiny observe
 #' @importFrom shiny observeEvent
-#' @importFrom shiny reactive
 #' @importFrom shiny renderUI
 #' @importFrom shiny req
 #' @importFrom shiny selectInput

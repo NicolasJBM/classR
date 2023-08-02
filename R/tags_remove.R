@@ -1,5 +1,5 @@
 #' @name tags_remove
-#' @title Remove a tag from all documents
+#' @title Remove a tag 
 #' @author Nicolas Mangin
 #' @description Function removing a tag from all documents.
 #' @param course_paths Reactive. Function containing a list of paths to the different folders and databases on local disk.

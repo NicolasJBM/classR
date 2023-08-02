@@ -17,7 +17,7 @@ tags_edit_server(id, course_data, course_paths)
 Modified tags.
 }
 \description{
-Tabular form to change the attributes associated with tags or add new tags.
+Module displaying a tabular form where the user can change the attributes associated with tags or add new tags.
 }
 \author{
 Nicolas Mangin

@@ -13,7 +13,7 @@ tags_edit_ui(id)
 Modified tags.
 }
 \description{
-Tabular form to change the attributes associated with tags or add new tags.
+Module displaying a tabular form where the user can change the attributes associated with tags or add new tags.
 }
 \author{
 Nicolas Mangin

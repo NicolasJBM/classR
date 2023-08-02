@@ -7,7 +7,7 @@
 trees_selected_json_to_tibble(selected_tree)
 }
 \arguments{
-\item{selected_tree}{List. input from a jsTreeR output.}
+\item{selected_tree}{List. Input from a jsTreeR output.}
 }
 \value{
 Tibble. List of selected documents.

@@ -1,16 +1,17 @@
 #' @name trees_edit_ui
 #' @title Edit course tree
 #' @author Nicolas Mangin
-#' @description Module allowing the user to change the hierarchical classification of documents and save these changes, either with the same name or a different one.
+#' @description Module allowing the user to change the hierarchical classification (tree) of documents and save these changes, either with the same name or a different one.
 #' @param id ID if the module to connect the user interface to the appropriate server side.
-#' @return Save the classification tree as a tibble in the folder "3_trees.
+#' @return Save the tree tree as a tibble in the folder containing trees.
 #' @importFrom jsTreeR jstreeOutput
+#' @importFrom shiny NS
 #' @importFrom shiny actionButton
 #' @importFrom shiny column
 #' @importFrom shiny fluidRow
 #' @importFrom shiny icon
-#' @importFrom shiny NS
 #' @importFrom shiny uiOutput
+#' @importFrom shinydashboardPlus box
 #' @export
 
 

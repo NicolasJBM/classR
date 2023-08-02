@@ -10,10 +10,10 @@ trees_edit_ui(id)
 \item{id}{ID if the module to connect the user interface to the appropriate server side.}
 }
 \value{
-Save the classification tree as a tibble in the folder "3_trees.
+Save the tree tree as a tibble in the folder containing trees.
 }
 \description{
-Module allowing the user to change the hierarchical classification of documents and save these changes, either with the same name or a different one.
+Module allowing the user to change the hierarchical classification (tree) of documents and save these changes, either with the same name or a different one.
 }
 \author{
 Nicolas Mangin

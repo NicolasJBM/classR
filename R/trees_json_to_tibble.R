@@ -1,7 +1,7 @@
 #' @name trees_json_to_tibble
 #' @title Transform a JSON list into a tibble
 #' @author Nicolas Mangin
-#' @description Function to transforms a document classification into a tibble and update all document-related information
+#' @description Function to transforms a document hierarchical classification into a tibble and update all document-related information
 #' @param json_file List. Document list as a classification tree.
 #' @param maxlevel Maximum number of nested levels to be expected. Set to a high number to give leeway
 #' @param course_data Reactive. Function containing all the course data loaded with the course.
@@ -56,7 +56,7 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
     table_file <- tibble::enframe(base::unlist(json_file)) |>
       tidyr::separate(name, into = levels, sep = "\\.") |>
       base::suppressWarnings()
-    table_file <- table_file[,base::apply(table_file, 2, function(x)
+    table_file <- table_file[, base::apply(table_file, 2, function(x)
       base::sum(base::is.na(x)/base::length(x))) < 1]
     
     # Remove empty information about the prior structure of the list and
@@ -162,7 +162,7 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
         dplyr::mutate(position = purrr::map_chr(
           position,
           function(x) base::paste0(
-            c("3",x,(base::rep(0,base::length(coordinates)-2))),
+            c("3",x,(base::rep(0, base::length(coordinates)-2))),
             collapse = "."
           )
         ))
@@ -183,7 +183,7 @@ trees_json_to_tibble <- function(json_file, maxlevel = 10, course_data){
       dplyr::mutate(position = purrr::map_chr(
         position,
         function(x) base::paste0(
-          c("3",x,(base::rep(0,base::length(coordinates)-2))),
+          c("3",x,(base::rep(0, base::length(coordinates)-2))),
           collapse = "."
         )
       ))

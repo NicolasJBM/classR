@@ -1,7 +1,7 @@
 Package: classR
-Type: Package
 Title: Classify Documents
-Version: 0.1.0
+Version: 1.30
+Date: 2023-08-02
 Authors@R: 
     person(given = "Nicolas",
            family = "Mangin",
@@ -16,15 +16,15 @@ Encoding: UTF-8
 RoxygenNote: 7.2.3
 Imports:
   dplyr,
-  knitr,
-  jsTreeR,
-  purrr,
+  tibble,
+  stringr,
+  fontawesome,
+  rhandsontable,
   shiny,
   shinyalert,
   shinybusy,
-  stringr,
-  tibble,
-  tidyr,
-  fontawesome,
-  rhandsontable,
-  shinydashboardPlus
+  shinydashboardPlus,
+  jsTreeR,
+  knitr,
+  purrr,
+  tidyr

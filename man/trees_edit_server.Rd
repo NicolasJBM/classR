@@ -16,10 +16,10 @@ trees_edit_server(id, tree, course_data, course_paths)
 \item{course_paths}{Reactive. Function containing a list of paths to the different folders and databases on local disk.}
 }
 \value{
-Save the tree tree as a tibble in the folder "3_trees".
+Save the tree tree as a tibble in the folder containing trees.
 }
 \description{
-Module allowing the user to change the hierarchical tree of documents and save these changes, either with the same name or a different one.
+Module allowing the user to change the hierarchical classification (tree) of documents and save these changes, either with the same name or a different one.
 }
 \author{
 Nicolas Mangin

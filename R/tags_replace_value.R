@@ -1,7 +1,7 @@
 #' @name tags_replace_value
 #' @title Replace tag value
 #' @author Nicolas Mangin
-#' @description Function replacing the value of a tag by another in all documents.
+#' @description Function replacing the value of a tag by another value in all documents. This is particularly useful when the user wants to change a label.
 #' @param course_paths Reactive. Function containing a list of paths to the different folders and databases on local disk.
 #' @param tag_label Character. Label of the tag in which the value should be replaced.
 #' @param old_value Character. Value which should be replaced.
