@@ -17,7 +17,7 @@ trees_create_list_levels <- function(x, depth, level = 1){
   if (base::nrow(x) > 0 & level == 1){
     
     # Split the table into a list of sub-tables for each section of that level
-    children_list <- base::split(x, x[,base::paste0("LEV",level)])
+    children_list <- base::split(x, x[, base::paste0("LEV",level)])
     
     # Apply the same function at lower levels
     children_list <- base::lapply(
@@ -36,14 +36,14 @@ trees_create_list_levels <- function(x, depth, level = 1){
   } else if (base::nrow(x) > 0 & level > 1 & level <= depth){
     
     # Identify document at the root of the level and those at sub-levels
-    root <- x[x[,base::paste0("LEV",level)] == 0,]
-    children <- x[x[,base::paste0("LEV",level)] != 0,]
+    root <- x[x[, base::paste0("LEV",level)] == 0,]
+    children <- x[x[, base::paste0("LEV",level)] != 0,]
     
     # If there are children, these are put in a sub-list processed later
     if (base::nrow(children) > 0){
       
       children_list <- base::split(
-        children, children[,base::paste0("LEV",level)]
+        children, children[, base::paste0("LEV",level)]
       )
       
       children_list <- base::lapply(

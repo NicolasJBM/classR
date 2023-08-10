@@ -13,10 +13,13 @@
 
 
 trees_selected_json_to_tibble <- function(selected_tree){
+  datalenght <- NULL
   selection <- tibble::tibble(selection = selected_tree) |>
     dplyr::mutate(selection = purrr::map(selection, function(x){
       base::as.data.frame(base::t(x$data))
     })) |>
+    dplyr::mutate(datalenght = purrr::map_int(selection, base::length)) |>
+    dplyr::filter(datalenght > 0) |>
     tidyr::unnest(selection)
   variables <- base::names(selection)
   selection <- tidyr::unnest(selection, dplyr::all_of(variables))
