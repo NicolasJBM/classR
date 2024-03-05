@@ -17,6 +17,7 @@
 #' @importFrom shiny HTML
 #' @importFrom shiny NS
 #' @importFrom shiny actionButton
+#' @importFrom shiny checkboxInput
 #' @importFrom shiny h4
 #' @importFrom shiny icon
 #' @importFrom shiny modalButton
@@ -43,6 +44,9 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
   ns <- shiny::NS(id)
   shiny::moduleServer(id, function(input, output, session) {
 
+    documents <- NULL
+    document_types <- NULL
+    
     output$editcourse <- shiny::renderUI({
       shiny::req(!base::is.na(tree()$course))
       base::list(
@@ -77,6 +81,10 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         shiny::textInput(
           ns("website"), "Website:",
           value = tree()$course$website[1], width = "100%"
+        ),
+        shiny::checkboxInput(
+          ns("active"), "Active",
+          value = tree()$course$active[1], width = "100%"
         )
       )
     })
@@ -95,7 +103,8 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         program_level = base::as.character(input$programlevel),
         group = base::as.character(input$group),
         year =  base::as.character(input$year),
-        website = base::as.character(input$website)
+        website = base::as.character(input$website),
+        active = base::as.character(input$active)
       )
       courses <- dplyr::bind_rows(edtided, other_courses)
       base::save(courses, file = course_paths()$databases$courses)
@@ -126,7 +135,30 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         wholerow = TRUE,
         contextMenu = TRUE,
         checkCallback = NULL,
-        grid = NULL,
+        grid = base::list(
+          columns = base::list(
+            base::list(
+              width = 650,
+              header = "Title"
+            ),
+            base::list(
+              width = 75,
+              value = "type",
+              header = "Type"
+            ),
+            base::list(
+              width = 175,
+              value = "file",
+              header = "File"
+            ),
+            base::list(
+              width = 100,
+              value = "translations",
+              header = "Translations"
+            )
+          ),
+          width = 1000
+        ),
         theme = "default"
       ) |>
         base::suppressMessages()
@@ -165,17 +197,19 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         spin = "orbit",
         text = "Please wait while the tree is saved..."
       )
+      
       jstree <- input$edittree_full
       treename <- tree()$course$tree[1]
-      base::save(
-        jstree,
-        file = base::paste0(course_paths()$subfolders$jstrees, "/", treename)
-      )
-      tree <- classR::trees_json_to_tibble(jstree, maxlevel = 10, course_data())
-      base::save(
-        tree,
-        file = base::paste0(course_paths()$subfolders$trees, "/", treename)
-      )
+      
+      base::load(course_paths()$databases$documents)
+      base::load(course_paths()$databases$doctypes)
+      
+      tbltree <- classR::jstree_to_tbltree(jstree, documents, document_types)
+      base::save(tbltree, file = base::paste0(course_paths()$subfolders$tbltrees, "/", treename))
+      
+      jstree <- classR::tbltree_to_jstree(tbltree)
+      base::save(jstree, file = base::paste0(course_paths()$subfolders$jstrees, "/", treename))
+      
       shinybusy::remove_modal_spinner()
       shinyalert::shinyalert(
         "Saved!",

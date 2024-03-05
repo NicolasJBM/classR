@@ -267,14 +267,6 @@ tags_edit_server <- function(id, course_data, course_paths){
       slcttaglabel <- shiny::isolate({input$slcttaglabel})
       totaglabel <- shiny::isolate({input$totaglabel})
       
-      
-      print(base::length(tags))
-      print(slcttaglabel)
-      print(totaglabel)
-      print(base::names(docs))
-      print(tags$tag)
-      
-      
       shiny::req(base::length(tags) > 0)
       shiny::req(slcttaglabel != "tag_")
       shiny::req(slcttaglabel %in% base::names(docs))
