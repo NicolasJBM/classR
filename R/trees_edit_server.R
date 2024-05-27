@@ -104,7 +104,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
         group = base::as.character(input$group),
         year =  base::as.character(input$year),
         website = base::as.character(input$website),
-        active = base::as.character(input$active)
+        active = base::as.logical(input$active)
       )
       courses <- dplyr::bind_rows(edtided, other_courses)
       base::save(courses, file = course_paths()$databases$courses)
