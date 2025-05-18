@@ -7,7 +7,7 @@
 trees_structure_textbook(tree, tree_name = "", website = "")
 }
 \arguments{
-\item{tree}{list.}
+\item{tree}{Tibble.}
 
 \item{tree_name}{Character. Name of the tree.}
 

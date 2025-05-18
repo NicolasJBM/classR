@@ -21,26 +21,10 @@ trees_edit_ui <- function(id){
   base::list(
     shiny::fluidRow(
       shinydashboardPlus::box(
-        title = "Definition",
-        status = "navy",
-        solidHeader = TRUE,
-        width = 2,
-        collapsible = TRUE,
-        collapsed = FALSE,
-        closable = FALSE,
-        icon = shiny::icon("id-card"),
-        shiny::actionButton(
-          ns("savecourse"), "Save course", icon = shiny::icon("floppy-disk"),
-          style = "background-color:#006600;color:#FFF;
-          width:100%;margin-top:25px;"
-        ),
-        shiny::uiOutput(ns("editcourse"))
-      ),
-      shinydashboardPlus::box(
         title = "Classification",
         status = "primary",
         solidHeader = TRUE,
-        width = 7,
+        width = 8,
         collapsible = TRUE,
         collapsed = FALSE,
         closable = FALSE,
@@ -67,7 +51,7 @@ trees_edit_ui <- function(id){
         title = "Display",
         status = "info",
         solidHeader = TRUE,
-        width = 3,
+        width = 4,
         collapsible = TRUE,
         collapsed = FALSE,
         closable = FALSE,

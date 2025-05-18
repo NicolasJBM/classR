@@ -3,7 +3,7 @@
 #' @author Nicolas Mangin
 #' @description Module allowing the user to change the hierarchical classification (tree) of documents and save these changes, either with the same name or a different one.
 #' @param id Character. ID of the module to connect the user interface to the appropriate server side.
-#' @param tree Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.
+#' @param intake Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.
 #' @param course_data Reactive. Function containing all the course data loaded with the course.
 #' @param course_paths Reactive. Function containing a list of paths to the different folders and databases on local disk.
 #' @return Save the tree tree as a tibble in the folder containing trees.
@@ -40,88 +40,20 @@
 #' @importFrom tibble tibble
 #' @export
 
-trees_edit_server <- function(id, tree, course_data, course_paths){
+trees_edit_server <- function(id, intake, course_data, course_paths){
   ns <- shiny::NS(id)
   shiny::moduleServer(id, function(input, output, session) {
 
     documents <- NULL
     document_types <- NULL
-    
-    output$editcourse <- shiny::renderUI({
-      shiny::req(!base::is.na(tree()$course))
-      base::list(
-        shiny::h4(tree()$course$tree[1]),
-        shiny::textInput(
-          ns("course"), "Course:", value = tree()$course$course[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("authors"), "Authors:",
-          value = tree()$course$authors[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("institution"), "Institution:",
-          value = tree()$course$institution[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("program"), "Program:",
-          value = tree()$course$program[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("programlevel"), "Program level:",
-          value = tree()$course$program_level[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("group"), "Group:",
-          value = tree()$course$group[1], width = "100%"
-        ),
-        shiny::numericInput(
-          ns("year"), "Year:",
-          value = tree()$course$year[1], width = "100%"
-        ),
-        shiny::textInput(
-          ns("website"), "Website:",
-          value = tree()$course$website[1], width = "100%"
-        ),
-        shiny::checkboxInput(
-          ns("active"), "Active",
-          value = tree()$course$active[1], width = "100%"
-        )
-      )
-    })
-
-
-    # Save course
-    shiny::observeEvent(input$savecourse, {
-      other_courses <- course_data()$courses |>
-        dplyr::anti_join(tree()$course, by = "tree")
-      edtided <- tibble::tibble(
-        tree = base::as.character(tree()$course$tree[1]),
-        course = base::as.character(input$course),
-        authors = base::as.character(input$authors),
-        institution = base::as.character(input$institution),
-        program = base::as.character(input$program),
-        program_level = base::as.character(input$programlevel),
-        group = base::as.character(input$group),
-        year =  base::as.character(input$year),
-        website = base::as.character(input$website),
-        active = base::as.logical(input$active)
-      )
-      courses <- dplyr::bind_rows(edtided, other_courses)
-      base::save(courses, file = course_paths()$databases$courses)
-      shinyalert::shinyalert(
-        "Saved!",
-        base::paste0("Changes to the course information have been saved. Reload the course to see changes."),
-        type = "success", closeOnEsc = FALSE, closeOnClickOutside = TRUE
-      )
-    })
 
 
     # Edit tree
     output$edittree <- jsTreeR::renderJstree({
-      shiny::req(!base::is.na(tree()$jstree))
+      shiny::req(!base::is.na(intake()$jstree))
       jsTreeR::jstreeDestroy(session, ns("edittree"))
       jsTreeR::jstree(
-        nodes = tree()$jstree,
+        nodes = intake()$jstree,
         selectLeavesOnly = FALSE,
         checkboxes = TRUE,
         search = FALSE,
@@ -199,7 +131,7 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
       )
       
       jstree <- input$edittree_full
-      treename <- tree()$course$tree[1]
+      treename <- intake()$intake$tree[1]
       
       base::load(course_paths()$databases$documents)
       base::load(course_paths()$databases$doctypes)
@@ -248,9 +180,6 @@ trees_edit_server <- function(id, tree, course_data, course_paths){
       shiny::removeModal()
       shiny::req(!base::is.null(input$treetodelete))
       if (input$treetodelete != ""){
-        courses <- course_data()$courses |>
-          dplyr::filter(tree != input$treetodelete)
-        base::save(courses, file = course_paths()$databases$courses)
         base::file.remove(
           base::paste0(
             course_paths()$subfolders$trees, "/", input$treetodelete

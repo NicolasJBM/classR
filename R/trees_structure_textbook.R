@@ -2,7 +2,7 @@
 #' @title Create a textbook structure
 #' @author Nicolas Mangin
 #' @description Function creating the textbook structure associated with a tree.
-#' @param tree list.
+#' @param tree Tibble.
 #' @param tree_name Character. Name of the tree.
 #' @param website Character. Address of the website where the textbook is hosted.
 #' @return Tibble with all necessary information about the pages of the textbook.

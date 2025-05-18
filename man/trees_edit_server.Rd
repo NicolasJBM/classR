@@ -4,12 +4,12 @@
 \alias{trees_edit_server}
 \title{Edit course tree}
 \usage{
-trees_edit_server(id, tree, course_data, course_paths)
+trees_edit_server(id, intake, course_data, course_paths)
 }
 \arguments{
 \item{id}{Character. ID of the module to connect the user interface to the appropriate server side.}
 
-\item{tree}{Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.}
+\item{intake}{Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.}
 
 \item{course_data}{Reactive. Function containing all the course data loaded with the course.}
 
