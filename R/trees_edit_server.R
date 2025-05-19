@@ -137,10 +137,10 @@ trees_edit_server <- function(id, intake, course_data, course_paths){
       base::load(course_paths()$databases$doctypes)
       
       tbltree <- classR::jstree_to_tbltree(jstree, documents, document_types)
-      base::save(tbltree, file = base::paste0(course_paths()$subfolders$tbltrees, "/", treename))
+      base::save(tbltree, file = base::paste0(course_paths()$subfolders$tbltrees, "/", treename, ".RData"))
       
       jstree <- classR::tbltree_to_jstree(tbltree)
-      base::save(jstree, file = base::paste0(course_paths()$subfolders$jstrees, "/", treename))
+      base::save(jstree, file = base::paste0(course_paths()$subfolders$jstrees, "/", treename, ".RData"))
       
       shinybusy::remove_modal_spinner()
       shinyalert::shinyalert(
