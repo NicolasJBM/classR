@@ -9,11 +9,11 @@ trees_edit_server(id, intake, course_data, course_paths)
 \arguments{
 \item{id}{Character. ID of the module to connect the user interface to the appropriate server side.}
 
-\item{intake}{Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.}
-
 \item{course_data}{Reactive. Function containing all the course data loaded with the course.}
 
 \item{course_paths}{Reactive. Function containing a list of paths to the different folders and databases on local disk.}
+
+\item{tree}{Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.}
 }
 \value{
 Save the tree tree as a tibble in the folder containing trees.
