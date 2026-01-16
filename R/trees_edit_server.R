@@ -3,7 +3,8 @@
 #' @author Nicolas Mangin
 #' @description Module allowing the user to change the hierarchical classification (tree) of documents and save these changes, either with the same name or a different one.
 #' @param id Character. ID of the module to connect the user interface to the appropriate server side.
-#' @param tree Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.
+#' @param tree Character. Name of the tree.
+#' @param jstree Reactive. Function containing a list of documents as a classification tree compatible with jsTreeR.
 #' @param course_data Reactive. Function containing all the course data loaded with the course.
 #' @param course_paths Reactive. Function containing a list of paths to the different folders and databases on local disk.
 #' @return Save the tree tree as a tibble in the folder containing trees.
@@ -40,7 +41,7 @@
 #' @importFrom tibble tibble
 #' @export
 
-trees_edit_server <- function(id, intake, course_data, course_paths){
+trees_edit_server <- function(id, tree, jstree, course_data, course_paths){
   ns <- shiny::NS(id)
   shiny::moduleServer(id, function(input, output, session) {
 
@@ -50,10 +51,10 @@ trees_edit_server <- function(id, intake, course_data, course_paths){
 
     # Edit tree
     output$edittree <- jsTreeR::renderJstree({
-      shiny::req(!base::is.na(intake()$jstree))
+      shiny::req(base::length(jstree()) == 3)
       jsTreeR::jstreeDestroy(session, ns("edittree"))
       jsTreeR::jstree(
-        nodes = intake()$jstree,
+        nodes = jstree(),
         selectLeavesOnly = FALSE,
         checkboxes = TRUE,
         search = FALSE,
@@ -131,7 +132,7 @@ trees_edit_server <- function(id, intake, course_data, course_paths){
       )
       
       jstree <- input$edittree_full
-      treename <- intake()$intake$tree[1]
+      treename <- tree
       
       base::load(course_paths()$databases$documents)
       base::load(course_paths()$databases$doctypes)
