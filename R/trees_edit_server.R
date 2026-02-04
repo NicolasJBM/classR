@@ -51,7 +51,7 @@ trees_edit_server <- function(id, tree, jstree, course_data, course_paths){
 
     # Edit tree
     output$edittree <- jsTreeR::renderJstree({
-      shiny::req(base::length(jstree()) == 3)
+      shiny::req(base::length(jstree()) >= 2)
       jsTreeR::jstreeDestroy(session, ns("edittree"))
       jsTreeR::jstree(
         nodes = jstree(),
